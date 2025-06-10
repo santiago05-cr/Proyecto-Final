@@ -2,7 +2,7 @@ from typing import List, Optional
 from sqlmodel import select
 from sqlalchemy import func
 from sqlmodel.ext.asyncio.session import AsyncSession
-from mental_health_models import *
+from app.mental_health_models import *
 
 class MentalHealthOperations:
 

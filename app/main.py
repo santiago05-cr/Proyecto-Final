@@ -8,10 +8,10 @@ from fastapi.templating import Jinja2Templates
 import os
 
 from images.upload_images import save_file
-from mental_health_models import *
-from videogame_models import *
-from mental_health_operations import MentalHealthOperations
-from videogame_operations import VideogameOperations
+from app.mental_health_models import *
+from app.videogame_models import *
+from app.mental_health_operations import MentalHealthOperations
+from app.videogame_operations import VideogameOperations
 
 app = FastAPI(
     title="Impacto De Los Videojuegos En La Salud Mental",

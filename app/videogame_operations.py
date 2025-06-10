@@ -2,7 +2,7 @@ from typing import List, Optional
 from sqlmodel import select
 from sqlalchemy import func
 from sqlmodel.ext.asyncio.session import AsyncSession
-from videogame_models import *
+from app.videogame_models import *
 
 
 class VideogameOperations:

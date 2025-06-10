@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if tipo == "mental_health" %}
+        🧠 Registros de Salud Mental
+    {% else %}
+        🎮 Registros de Videojuegos
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+<div class="container py-5" style="background-color:#121212; min-height:100vh; font-family:'Bangers',cursive; color:white;">
+  <div class="mb-5 p-4 text-center rounded-lg" style="background:linear-gradient(135deg,#8000ff 0%,#f0ff00 100%);">
+    <h2 style="font-size:2.5rem; margin:0; text-shadow:2px 2px #000;">
+      {% if tipo == "mental_health" %}Registros de Salud Mental{% else %}Registros de Videojuegos{% endif %}
+    </h2>
+    <p style="margin:0.5rem 0 0;">
+      {% if tipo == "mental_health" %}Explora registros sobre estado emocional tras jugar{% else %}Explora registros sobre horas de juego y productividad{% endif %}
+    </p>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table class="table table-dark table-hover align-middle">
+      <thead>
+        <tr style="border-bottom:2px solid #8000ff;">
+          <th>#</th>
+          <th>Edad</th>
+          <th>Género</th>
+          {% if tipo == "mental_health" %}
+            <th>Sentimiento</th>
+            <th>Daño Mental</th>
+          {% else %}
+            <th>Horas Jugadas</th>
+            <th>Horas Productivas</th>
+          {% endif %}
+          <th class="text-center">Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rec in records %}
+        <tr>
+          <td>{{ rec.id }}</td>
+          <td>{{ rec.age }}</td>
+          <td>{{ rec.gender }}</td>
+          {% if tipo == "mental_health" %}
+            <td>{{ rec.feel_after }}</td>
+            <td>{{ rec.mental_harm }}</td>
+          {% else %}
+            <td>{{ rec.playing_hours }}</td>
+            <td>{{ rec.productive_time }}</td>
+          {% endif %}
+          <td class="text-center">
+            <img src="{{ rec.image_url }}"
+                 alt="Registro #{{ rec.id }}"
+                 data-bs-toggle="modal" data-bs-target="#imageModal"
+                 data-bs-img="{{ rec.image_url }}"
+                 data-bs-title="Registro #{{ rec.id }}"
+                 style="width:50px;height:50px;border:2px solid #8000ff;border-radius:8px;cursor:pointer;object-fit:cover;"/>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="{% if tipo=='mental_health' %}5{% else %}5{% endif %}" class="text-center text-muted py-3">
+            No hay registros disponibles.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content rounded-lg overflow-hidden" style="background-color:#121212;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-white" id="modalImageTitle"></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center p-0">
+        <img id="modalImage" src="" class="img-fluid" style="max-height:80vh;" />
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn-submit" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .table-hover tbody tr:hover { background: rgba(255,255,255,0.1); }
+</style>
+
+<script>
+  document.addEventListener('show.bs.modal', function(e) {
+    const img = e.relatedTarget.getAttribute('data-bs-img');
+    const title = e.relatedTarget.getAttribute('data-bs-title');
+    document.getElementById('modalImage').src = img;
+    document.getElementById('modalImageTitle').textContent = title;
+  });
+</script>
+{% endblock %}

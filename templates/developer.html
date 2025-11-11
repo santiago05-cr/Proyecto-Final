@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Perfil del Desarrollador - Salud Mental y Videojuegos{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="container py-5" style="background-color:#121212; min-height:100vh; font-family:'Bangers',cursive; color:white;">
+    <!-- Hero Section -->
+    <div class="mb-5 p-4 text-center rounded-lg" style="background:linear-gradient(135deg,#8000ff 0%,#f0ff00 100%);">
+        <h1 style="font-size:2.5rem; margin:0; text-shadow:2px 2px #000;"><i class="fas fa-code me-2"></i>Perfil del Desarrollador</h1>
+        <p style="margin:0.5rem 0 0; font-size:1.2rem;">Conoce al creador detrás de este proyecto</p>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="p-4" style="background:rgba(255,255,255,0.05); border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.5);">
+                <div class="text-center mb-4">
+                    <img src="https://lhrdkvibtvczxwcrrrma.supabase.co/storage/v1/object/public/imagenes//yo.png" class="rounded-circle mb-3" style="width:150px; height:150px; border:4px solid #f0ff00;">
+                    <h2 style="color:#f0ff00; text-shadow:1px 1px #8000ff;">Santiago Cárdenas Rubio</h2>
+                    <p class="mb-1"><i class="fas fa-map-marker-alt me-2" style="color:#8000ff;"></i>Colombia</p>
+                    <p><i class="fas fa-user-graduate me-2" style="color:#f0ff00;"></i>Estudiante de Ingeniería de Sistemas y Computación</p>
+                </div>
+
+                <!-- Sección de Datos Gamer -->
+                <div class="mb-4">
+                    <h3 style="color:#8000ff; border-bottom:2px solid #f0ff00; padding-bottom:0.5rem;"><i class="fas fa-gamepad me-2"></i>Datos Gamer Curiosos</h3>
+                    <div class="row mt-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; border-left:4px solid #8000ff;">
+                                <h5 style="color:#f0ff00;"><i class="fas fa-trophy me-2"></i>Logro Legendario</h5>
+                                <p>Fanático de las sagas tipo Souls, completó Elden Ring sin invocaciones en modo offline.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(240,255,0,0.1); border-radius:10px; border-left:4px solid #f0ff00;">
+                                <h5 style="color:#8000ff;"><i class="fas fa-history me-2"></i>Primer Juego</h5>
+                                <p>Su primer videojuego fue Super Mario World en SNES, donde aprendió que los pozos son traicioneros.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Desarrollo -->
+                <div class="mb-4">
+                    <h3 style="color:#f0ff00; border-bottom:2px solid #8000ff; padding-bottom:0.5rem;"><i class="fas fa-laptop-code me-2"></i>Datos de Desarrollo</h3>
+                    <div class="row mt-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(240,255,0,0.1); border-radius:10px; border-left:4px solid #f0ff00;">
+                                <h5 style="color:#8000ff;"><i class="fas fa-code me-2"></i>Primera Línea de Código</h5>
+                                <p>Un "Hola Mundo" en Python que eventualmente llevó a desarrollar APIs completas con FastAPI.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; border-left:4px solid #8000ff;">
+                                <h5 style="color:#f0ff00;"><i class="fas fa-coffee me-2"></i>Stack Favorito</h5>
+                                <p>Python + FastAPI, SQLModel, PostgreSQL, Docker, GitHub Actions.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(240,255,0,0.1); border-radius:10px; border-left:4px solid #f0ff00;">
+                                <h5 style="color:#8000ff;"><i class="fab fa-github me-2"></i>Perfil de GitHub</h5>
+                                <p>Explora sus proyectos en <a href="https://github.com/santiago05-cr" target="_blank" style="color:#f0ff00;">github.com/santiago05-cr</a>, incluyendo simuladores de planificación, visualizaciones y apps educativas.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; border-left:4px solid #8000ff;">
+                                <h5 style="color:#f0ff00;"><i class="fas fa-lightbulb me-2"></i>Filosofía de Código</h5>
+                                <p>“Hazlo simple. Hazlo legible. Luego hazlo elegante. Y siempre documenta”.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Psicología -->
+                <div class="mb-4">
+                    <h3 style="color:#8000ff; border-bottom:2px solid #f0ff00; padding-bottom:0.5rem;"><i class="fas fa-brain me-2"></i>Datos Psicológicos</h3>
+                    <div class="row mt-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; border-left:4px solid #8000ff;">
+                                <h5 style="color:#f0ff00;"><i class="fas fa-book me-2"></i>Libro Favorito</h5>
+                                <p>"Flow" de Csikszentmihalyi: sobre cómo alcanzar la concentración máxima al programar o jugar.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 h-100" style="background:rgba(240,255,0,0.1); border-radius:10px; border-left:4px solid #f0ff00;">
+                                <h5 style="color:#8000ff;"><i class="fas fa-seedling me-2"></i>Mejor Consejo</h5>
+                                <p>"El descanso es parte del proceso". Balancear salud mental y código mejora ambos mundos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frase Final -->
+                <div class="text-center mt-4 p-3" style="background:linear-gradient(135deg,rgba(128,0,255,0.3) 0%,rgba(240,255,0,0.3) 100%); border-radius:10px;">
+                    <h4 style="color:#f0ff00;"><i class="fas fa-quote-left me-2"></i>Frase Favorita</h4>
+                    <p class="mb-0" style="font-size:1.1rem;">"En la programación como en los videojuegos: cuando te atascas, a veces la solución es dar un paso atrás."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .rounded-circle {
+        object-fit: cover;
+    }
+
+    .row {
+        --bs-gutter-x: 1.5rem;
+    }
+
+    h2, h3, h4, h5 {
+        letter-spacing: 1px;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem !important;
+        }
+
+        .col-md-6 {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+{% endblock %}

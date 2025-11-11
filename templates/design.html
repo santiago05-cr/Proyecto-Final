@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}Introducción al Proyecto - Salud Mental y Videojuegos{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="container py-5" style="background-color:#121212; min-height:100vh; font-family:'Bangers',cursive; color:white;">
+    <!-- Hero Section -->
+    <div class="mb-5 p-4 text-center rounded-lg" style="background:linear-gradient(135deg,#8000ff 0%,#f0ff00 100%);">
+        <h1 style="font-size:2.5rem; margin:0; text-shadow:2px 2px #000;">Explorando la Conexión: Salud Mental y Videojuegos</h1>
+        <p style="margin:0.5rem 0 0; font-size:1.2rem;">Descubre cómo los videojuegos pueden ser una herramienta para el bienestar mental</p>
+    </div>
+
+    <!-- Introducción -->
+    <section class="mb-5 p-4" style="background:rgba(255,255,255,0.05); border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.5);">
+        <h2 class="text-center" style="color:#f0ff00; text-shadow:1px 1px #8000ff;">¡Hola, soy Santiago! 👋</h2>
+        <p class="lead text-center" style="font-size:1.1rem;">
+            Este proyecto tiene como objetivo principal <strong>analizar la relación entre el uso de videojuegos y la salud mental</strong>.
+            Buscamos evaluar su potencial para <strong>reducir síntomas de depresión y ansiedad</strong>, así como para
+            <strong>fortalecer habilidades cognitivas y sociales</strong>.
+        </p>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-3">
+                <div class="p-3" style="background:rgba(128,0,255,0.1); border-radius:10px; border-left:4px solid #8000ff;">
+                    <h4 style="color:#f0ff00;"><i class="fas fa-brain me-2"></i>Salud Mental</h4>
+                    <p>Analizamos cómo diferentes géneros de videojuegos afectan el bienestar psicológico y el desarrollo cognitivo.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="p-3" style="background:rgba(240,255,0,0.1); border-radius:10px; border-left:4px solid #f0ff00;">
+                    <h4 style="color:#8000ff;"><i class="fas fa-gamepad me-2"></i>Videojuegos</h4>
+                    <p>Estudiamos patrones de juego, horas invertidas y su correlación con productividad y estados de ánimo.</p>
+                </div>
+            </div>
+        </div>
+        <hr style="border-color:#8000ff;">
+        <div class="text-center">
+            <h3 style="color:#f0ff00;">Stack Tecnológico</h3>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">SQLModel</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Bootstrap 5</span>
+                <span class="tech-badge">HTML5/CSS3</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planeación -->
+    <section class="mb-5 p-4" style="background:rgba(255,255,255,0.05); border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.5);">
+        <h2 style="color:#8000ff; border-bottom:2px solid #f0ff00; padding-bottom:0.5rem;">Planeación del Proyecto</h2>
+
+        <h3 class="mt-4" style="color:#f0ff00;"><i class="fas fa-tasks me-2"></i>Casos de Uso</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+                <div class="h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; padding:1rem; border:1px solid #8000ff;">
+                    <h5 style="color:#f0ff00;">CU001: Crear Cuenta</h5>
+                    <p>Registro de usuarios con datos básicos para acceder al sistema.</p>
+                    <div style="color:#8000ff;">
+                        <i class="fas fa-user-plus"></i> <small>Endpoint: /api/register</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; padding:1rem; border:1px solid #8000ff;">
+                    <h5 style="color:#f0ff00;">CU002: Explorar Estudios</h5>
+                    <p>Navegación por artículos y estudios científicos sobre el tema.</p>
+                    <div style="color:#8000ff;">
+                        <i class="fas fa-book-open"></i> <small>Endpoint: /api/articles</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; padding:1rem; border:1px solid #8000ff;">
+                    <h5 style="color:#f0ff00;">CU003: Publicar en Foro</h5>
+                    <p>Creación de publicaciones y comentarios en la comunidad.</p>
+                    <div style="color:#8000ff;">
+                        <i class="fas fa-comments"></i> <small>Endpoint: /api/forum</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; padding:1rem; border:1px solid #8000ff;">
+                    <h5 style="color:#f0ff00;">CU004: Registrar Sesión</h5>
+                    <p>Registro de sesiones de juego y estados de ánimo asociados.</p>
+                    <div style="color:#8000ff;">
+                        <i class="fas fa-gamepad"></i> <small>Endpoint: /api/sessions</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; padding:1rem; border:1px solid #8000ff;">
+                    <h5 style="color:#f0ff00;">CU005: Gestionar Contenido</h5>
+                    <p>Administración de artículos y recursos (solo admin).</p>
+                    <div style="color:#8000ff;">
+                        <i class="fas fa-cog"></i> <small>Endpoint: /api/admin</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="h-100" style="background:rgba(128,0,255,0.1); border-radius:10px; padding:1rem; border:1px solid #8000ff;">
+                    <h5 style="color:#f0ff00;">CU006: Generar Reportes</h5>
+                    <p>Visualización de patrones de juego y estados de ánimo.</p>
+                    <div style="color:#8000ff;">
+                        <i class="fas fa-chart-line"></i> <small>Endpoint: /api/reports</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-5" style="color:#f0ff00;"><i class="fas fa-database me-2"></i>Modelo de Datos</h3>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr style="border-bottom:2px solid #8000ff;">
+                        <th>Entidad</th>
+                        <th>Atributos</th>
+                        <th>Relaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Usuario</strong></td>
+                        <td>id, username, email, password_hash</td>
+                        <td>Sesiones, Publicaciones</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SesiónJuego</strong></td>
+                        <td>id, user_id, game, duration, mood_pre, mood_post</td>
+                        <td>Usuario (N:1)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Artículo</strong></td>
+                        <td>id, title, content, author, category</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PublicaciónForo</strong></td>
+                        <td>id, user_id, title, content</td>
+                        <td>Usuario (N:1), Comentarios (1:N)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Diseño del Sistema -->
+    <section class="mb-5 p-4" style="background:rgba(255,255,255,0.05); border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.5);">
+        <h2 style="color:#8000ff; border-bottom:2px solid #f0ff00; padding-bottom:0.5rem;">Diseño del Sistema</h2>
+
+        <h3 class="mt-4" style="color:#f0ff00;"><i class="fas fa-project-diagram me-2"></i>Arquitectura</h3>
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/800x400/121212/8000ff?text=DIAGRAMA+DE+ARQUITECTURA" class="img-fluid" style="border:2px solid #f0ff00; border-radius:10px;">
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="p-3 h-100" style="background:rgba(128,0,255,0.1); border-radius:10px;">
+                    <h5 style="color:#f0ff00;">Frontend</h5>
+                    <p>Interfaz web responsive con Bootstrap 5 y JavaScript para interacciones dinámicas.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="p-3 h-100" style="background:rgba(240,255,0,0.1); border-radius:10px;">
+                    <h5 style="color:#8000ff;">Backend</h5>
+                    <p>API REST con FastAPI, manejo de autenticación, lógica de negocio y conexión a BD.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="p-3 h-100" style="background:rgba(128,0,255,0.1); border-radius:10px;">
+                    <h5 style="color:#f0ff00;">Base de Datos</h5>
+                    <p>PostgreSQL con SQLModel para ORM, tablas relacionales y migraciones.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-4" style="color:#f0ff00;"><i class="fas fa-code me-2"></i>Endpoints API</h3>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr style="border-bottom:2px solid #f0ff00;">
+                        <th>Método</th>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge bg-primary">POST</span></td>
+                        <td><code>/api/register</code></td>
+                        <td>Registro de nuevo usuario</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-success">POST</span></td>
+                        <td><code>/api/login</code></td>
+                        <td>Autenticación de usuario</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-info">GET</span></td>
+                        <td><code>/api/sessions</code></td>
+                        <td>Obtener sesiones de juego</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-warning">POST</span></td>
+                        <td><code>/api/sessions</code></td>
+                        <td>Crear nueva sesión</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge bg-danger">DELETE</span></td>
+                        <td><code>/api/sessions/{id}</code></td>
+                        <td>Eliminar sesión</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="mt-4" style="color:#f0ff00;"><i class="fas fa-mobile-alt me-2"></i>Interfaz de Usuario</h3>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div style="border:2px solid #8000ff; border-radius:10px; padding:1rem;">
+                    <h5 style="color:#f0ff00;">Dashboard Principal</h5>
+                    <img src="https://via.placeholder.com/500x300/121212/f0ff00?text=DASHBOARD+PRINCIPAL" class="img-fluid mb-2">
+                    <p>Vista resumen con estadísticas personales y acceso rápido.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="border:2px solid #f0ff00; border-radius:10px; padding:1rem;">
+                    <h5 style="color:#8000ff;">Formulario de Sesión</h5>
+                    <img src="https://via.placeholder.com/500x300/121212/8000ff?text=FORMULARIO+DE+SESION" class="img-fluid mb-2">
+                    <p>Registro detallado de sesiones de juego y estado de ánimo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .tech-badge {
+        background: rgba(128,0,255,0.2);
+        color: #f0ff00;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid #8000ff;
+        font-size: 0.9rem;
+    }
+
+    .table-dark th, .table-dark td {
+        border-color: #333;
+    }
+
+    .table-hover tbody tr:hover {
+        background: rgba(128,0,255,0.1);
+    }
+
+    .badge {
+        font-family: Arial, sans-serif;
+    }
+
+    hr {
+        border-color: #8000ff;
+        opacity: 0.5;
+    }
+
+    code {
+        color: #f0ff00;
+        background: rgba(128,0,255,0.2);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}

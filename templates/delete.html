@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar Registros{% endblock %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+<div class="container py-5" style="background-color: #121212; min-height: 100vh; font-family: 'Bangers', cursive;">
+  <div class="mx-auto p-4" style="max-width: 900px; background: rgba(255,255,255,0.05); border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+
+    <div class="text-center mb-4">
+      <h1 style="font-size: 2.5rem; color: #8000ff; text-shadow: 2px 2px #f0ff00;"><i class="fas fa-trash-alt me-2"></i>Eliminar Registros</h1>
+      <p style="color: white; font-size: 1rem;">Busca y elimina registros de salud mental o videojuegos</p>
+    </div>
+
+    <form id="searchForm" class="row g-3 mb-4">
+      <div class="col-md-5">
+        <label for="type" class="form-label">Tipo de Registro</label>
+        <select id="type" class="form-select" required>
+          <option value="">Selecciona una opción</option>
+          <option value="mental_health">Salud Mental</option>
+          <option value="videogames">Videojuegos</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <label for="id" class="form-label">ID del Registro</label>
+        <input type="number" id="id" class="form-control" required placeholder="Ingresa ID">
+      </div>
+      <div class="col-md-2 d-grid">
+        <button type="submit" class="btn-submit" style="height: 100%;"><i class="fas fa-search me-1"></i>Buscar</button>
+      </div>
+    </form>
+
+    <div id="searchResults"></div>
+
+    <div id="recordPreview" class="d-none p-4" style="background: rgba(255,255,255,0.05); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <div id="previewContent" class="mb-4"></div>
+      <form id="deleteForm" method="POST" class="d-flex justify-content-end gap-3">
+        <input type="hidden" id="deleteType" name="type">
+        <input type="hidden" id="deleteId" name="id">
+        <button type="button" id="cancelDelete" class="btn-outline">Cancelar</button>
+        <button type="submit" class="btn-danger"><i class="fas fa-trash-alt me-1"></i>Confirmar</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  label.form-label { color: white; margin-bottom: 0.4rem; display: block; }
+  .form-select, .form-control {
+    background: #121212; border: 1px solid #8000ff; color: white; padding: 0.6rem 0.8rem; line-height: 1.5;
+  }
+  .form-control::placeholder { color: white; opacity: 1; }
+  .form-select option { background: #121212; color: white; }
+  .form-select:focus, .form-control:focus {
+    border-color: #f0ff00; box-shadow: 0 0 8px rgba(240,255,0,0.5); background: #121212; color: white;
+  }
+  .btn-submit {
+    background: linear-gradient(135deg,#f0ff00 0%,#8000ff 100%); color: #121212; border: none; padding: 0.6rem; border-radius: 8px; transition: all 0.3s;
+  }
+  .btn-submit:hover { background: linear-gradient(135deg,#8000ff 0%,#f0ff00 100%); }
+  .btn-outline { background: transparent; border: 1px solid #fff; color: white; padding: 0.6rem 1rem; border-radius: 8px; transition: all 0.3s; }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .btn-danger {
+    background: linear-gradient(135deg,#f44336 0%,#d32f2f 100%); color: white; border: none; padding: 0.6rem 1rem; border-radius: 8px; transition: all 0.3s;
+  }
+  .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(244,67,54,0.3); }
+  .field-label { font-weight: 600; color: #f0ff00; margin-bottom: 0.3rem; }
+  .field-value { color: white; margin-bottom: 0.8rem; }
+</style>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const type = document.getElementById('type').value;
+    const id = document.getElementById('id').value;
+    const resultsDiv = document.getElementById('searchResults');
+    resultsDiv.innerHTML = `<p style="color:white;">Buscando registro...</p>`;
+    try {
+      const endpoint = type === 'videogames' ? '/videogames/' : '/mental_health/';
+      const res = await fetch(`${endpoint}${id}`);
+      if(!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      let html = '';
+      html += `<div><span class="field-label">ID:</span><div class="field-value">${data.id}</div></div>`;
+      html += `<div style="text-align:center; margin-bottom:1rem;"><img src="${data.image_url}" alt="Imagen" style="width:300px; height:300px; border:2px solid #4fc3f7; border-radius:8px;"></div>`;
+      html += `<div><span class="field-label">Edad:</span><div class="field-value">${data.age} años</div></div>`;
+      html += `<div><span class="field-label">Género:</span><div class="field-value">${data.gender}</div></div>`;
+      if(type === 'mental_health') {
+        html += `<div><span class="field-label">Sentimiento tras jugar:</span><div class="field-value">${data.feel_after}</div></div>`;
+        html += `<div><span class="field-label">Daño mental tras jugar:</span><div class="field-value">${data.mental_harm}</div></div>`;
+      } else {
+        html += `<div><span class="field-label">Horas jugadas:</span><div class="field-value">${data.playing_hours}</div></div>`;
+        html += `<div><span class="field-label">Horas productivas:</span><div class="field-value">${data.productive_time}</div></div>`;
+      }
+      document.getElementById('previewContent').innerHTML = html;
+      document.getElementById('deleteType').value = type;
+      document.getElementById('deleteId').value = data.id;
+      document.getElementById('recordPreview').classList.remove('d-none');
+      resultsDiv.innerHTML = '';
+    } catch(err) {
+      resultsDiv.innerHTML = `<p style="color:#f44336;">Error: ${err.message}</p>`;
+    }
+  });
+  document.getElementById('cancelDelete').addEventListener('click', () => {
+    document.getElementById('recordPreview').classList.add('d-none');
+  });
+  document.getElementById('deleteForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const type = document.getElementById('deleteType').value;
+    const id = document.getElementById('deleteId').value;
+    
+    try {
+        const deleteEndpoint = type === 'videogames' 
+            ? `/videogames/delete/${id}` 
+            : `/mental_health/delete/${id}`;
+
+        const response = await fetch(deleteEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.detail || 'Error al eliminar el registro');
+        }
+
+        // Mostrar mensaje de éxito
+        const resultsDiv = document.getElementById('searchResults');
+        resultsDiv.innerHTML = `
+            <div class="alert alert-success" style="background: rgba(40,167,69,0.2); border-color: #28a745; color: white;">
+                <i class="fas fa-check-circle me-2"></i>
+                Registro eliminado exitosamente y movido a la tabla de eliminados
+                <br>
+                <a href="/deleted" class="btn btn-outline-light btn-sm mt-2">
+                    <i class="fas fa-eye me-1"></i>Ver registros eliminados
+                </a>
+            </div>
+        `;
+
+        // Limpiar formulario y preview
+        document.getElementById('recordPreview').classList.add('d-none');
+        document.getElementById('searchForm').reset();
+
+    } catch(err) {
+        const resultsDiv = document.getElementById('searchResults');
+        resultsDiv.innerHTML = `
+            <div class="alert alert-danger" style="background: rgba(220,53,69,0.2); border-color: #dc3545; color: white;">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                Error: ${err.message}
+            </div>
+        `;
+    }
+});
+</script>
+{% endblock %}

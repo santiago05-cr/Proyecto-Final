@@ -1,0 +1,169 @@
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg" style="background: linear-gradient(135deg, #f0ff00 0%, #8000ff 100%); padding: 1rem 1.5rem; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.25);">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+
+    <!-- Botón del creador mejorado -->
+    <a href="/developer" class="creator-btn d-flex align-items-center text-decoration-none">
+      <div class="creator-img-wrapper me-2">
+        <img src="https://lhrdkvibtvczxwcrrrma.supabase.co/storage/v1/object/public/imagenes//yo.png"
+             alt="Santiago"
+             width="40"
+             height="40">
+      </div>
+      <span class="creator-text">Developer</span>
+    </a>
+
+    <!-- Título centrado con fuente Bangers -->
+    <div class="d-none d-lg-block text-center" style="font-family: 'Bangers', cursive; font-size: 1.8rem; color: #ffffff; letter-spacing: 1px;">
+      <span style="color: #8000ff;">Mental Health</span> <span style="color: #f0ff00;">& Videogames</span>
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <!-- Menú colapsable -->
+  <div class="collapse navbar-collapse mt-2 px-4" id="navbarMain">
+    <ul class="navbar-nav w-100 d-flex justify-content-around text-center">
+      <li class="nav-item">
+        <a class="nav-link text-white fw-bold" href="/home"><i class="fas fa-house-user me-1"></i>Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white fw-bold" href="/planning"><i class="fas fa-map-location me-1"></i>Planning</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white fw-bold" href="/design"><i class="fas fa-pen-ruler me-1"></i>Design</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white fw-bold" href="/goal"><i class="fas fa-globe me-1"></i>Goal</a>
+      </li>
+
+      <!-- Dropdown Salud Mental -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+          <i class="fas fa-heart-pulse me-1" style="color: #f0ff00;"></i>  Mental Health
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="/mental_health"><i></i>See all</a></li>
+          <li><a class="dropdown-item" href="/create"><i></i>New</a></li>
+          <li><a class="dropdown-item" href="/update"><i></i>Edit</a></li>
+          <li><a class="dropdown-item" href="/delete"><i></i>Delete</a></li>
+        </ul>
+      </li>
+
+      <!-- Dropdown Videojuegos -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+          <i class="fas fa-headset me-1" style="color: #f0ff00;"></i> Videogames
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="/videogame"><i></i>See all</a></li>
+          <li><a class="dropdown-item" href="/create"><i></i>New</a></li>
+          <li><a class="dropdown-item" href="/update"><i></i>Edit</a></li>
+          <li><a class="dropdown-item" href="/delete"><i></i>Delete</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Botón Cerrar Sesión -->
+  <div class="text-center mt-3 mb-2">
+    <a href="/" class="logout-btn text-decoration-none">
+      <i class="fas fa-sign-out-alt me-1"></i> Logout
+    </a>
+  </div>
+
+  <style>
+    .nav-link {
+      transition: all 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #fff;
+      text-shadow: 0 0 6px rgba(255,255,255,0.6);
+    }
+    .dropdown-menu {
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 12px;
+      border: 1px solid #fff;
+      color: white;
+    }
+    .dropdown-item {
+      color: white;
+    }
+    .dropdown-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .navbar-toggler {
+      background-color: white;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .creator-btn {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 1rem;
+      border-radius: 12px;
+      border: 2px solid #8000ff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Bangers', cursive;
+      color: #8000ff;
+    }
+
+    .creator-btn:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px #f0ff00, 0 0 30px #8000ff;
+      color: #8000ff;
+    }
+
+    .creator-img-wrapper {
+      border-radius: 8px;
+      overflow: hidden;
+      width: 40px;
+      height: 40px;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .creator-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .creator-text {
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    /* Botón Logout */
+    .logout-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff0000, #ff8000);
+      color: white;
+      font-weight: bold;
+      padding: 0.4rem 1rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 1px;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(90deg, #ff4d4d, #ffb84d);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+      color: white;
+    }
+  </style>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</nav>
+

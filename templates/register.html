@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Usuario</title>
+  <style>
+    body { background: #111; color: #fff; font-family: Arial; text-align: center; }
+    form { background: #222; padding: 30px; border-radius: 10px; width: 300px; margin: 100px auto; }
+    input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+    button { width: 95%; padding: 10px; border: none; border-radius: 5px; background: #5A67D8; color: white; font-weight: bold; }
+    a { color: #aaa; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Registro de Usuario</h1>
+
+  {% if mensaje %}
+    <p style="color: lightgreen;">{{ mensaje }}</p>
+  {% endif %}
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="post" action="/register">
+    <input type="text" name="username" placeholder="Usuario" required><br>
+    <input type="email" name="email" placeholder="Correo electrónico" required><br>
+    <input type="text" name="full_name" placeholder="Nombre completo"><br>
+    <input type="password" name="password" placeholder="Contraseña" required><br>
+    <button type="submit">Registrar</button>
+  </form>
+
+  {% if error %}
+<div class="alert alert-danger text-center mt-3" role="alert"
+     style="background: linear-gradient(135deg, #ff0040 0%, #8000ff 100%);
+            border: none; color: white; font-family: 'Bangers', cursive;
+            font-size: 1.2em; letter-spacing: 1px; box-shadow: 0 0 10px rgba(255, 0, 64, 0.5);">
+    {{ error }}
+</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success text-center mt-3" role="alert"
+     style="background: linear-gradient(135deg, #00c853 0%, #64dd17 100%);
+            border: none; color: white; font-family: 'Bangers', cursive;
+            font-size: 1.2em; letter-spacing: 1px; box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);">
+    {{ success }}
+</div>
+{% endif %}
+
+  <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+</body>
+</html>
+
+
+
+

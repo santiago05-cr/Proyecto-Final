@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Objetivo del Proyecto{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+<div class="container py-5" style="background-color: #121212; min-height: 100vh; font-family: 'Bangers', cursive;">
+  <div class="mx-auto p-4" style="max-width: 1200px; background: rgba(255,255,255,0.05); border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+
+    <!-- Encabezado -->
+    <div class="text-center mb-5">
+      <h1 style="font-size: 3rem; color: #8000ff; text-shadow: 2px 2px #f0ff00;">
+        <i class="fas fa-bullseye me-2"></i>Objetivo del Proyecto
+      </h1>
+      <p class="mt-3" style="color: white; font-size: 1.2rem;">
+        Explorando la relación entre videojuegos y salud mental
+      </p>
+    </div>
+
+    <!-- Objetivo Principal -->
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto">
+        <div class="p-4" style="background: rgba(128, 0, 255, 0.1); border-radius: 12px; border-left: 4px solid #8000ff;">
+          <h2 style="color: #f0ff00; font-size: 1.8rem;" class="mb-3">
+            <i class="fas fa-crosshairs me-2"></i>Propósito Principal
+          </h2>
+          <p style="color: white; font-size: 1.1rem; line-height: 1.6;">
+            Analizar la relación entre el uso de videojuegos y la salud mental, evaluando su potencial para reducir síntomas
+            de depresión y ansiedad, así como para fortalecer habilidades cognitivas y sociales. Utilizamos datasets públicos
+            y registros propios para identificar patrones entre el tipo de videojuegos, la frecuencia de juego y los indicadores
+            de bienestar psicológico.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Áreas de Investigación -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="h-100 p-4" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-top: 3px solid #8000ff;">
+          <div class="text-center mb-3">
+            <i class="fas fa-brain fa-3x" style="color: #8000ff;"></i>
+          </div>
+          <h3 style="color: #f0ff00; font-size: 1.5rem;" class="text-center mb-3">Salud Mental</h3>
+          <ul style="color: white; padding-left: 1.2rem;">
+            <li class="mb-2">Impacto en depresión y ansiedad</li>
+            <li class="mb-2">Regulación emocional</li>
+            <li class="mb-2">Estrés post-traumático</li>
+            <li>Adicción y uso problemático</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="h-100 p-4" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-top: 3px solid #f0ff00;">
+          <div class="text-center mb-3">
+            <i class="fas fa-gamepad fa-3x" style="color: #f0ff00;"></i>
+          </div>
+          <h3 style="color: #8000ff; font-size: 1.5rem;" class="text-center mb-3">Videojuegos</h3>
+          <ul style="color: white; padding-left: 1.2rem;">
+            <li class="mb-2">Diferentes géneros y sus efectos</li>
+            <li class="mb-2">Tiempo de juego óptimo</li>
+            <li class="mb-2">Juego casual vs competitivo</li>
+            <li>Realidad virtual y aumentada</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="h-100 p-4" style="background: rgba(255,255,255,0.03); border-radius: 12px; border-top: 3px solid #4fc3f7;">
+          <div class="text-center mb-3">
+            <i class="fas fa-users fa-3x" style="color: #4fc3f7;"></i>
+          </div>
+          <h3 style="color: #f0ff00; font-size: 1.5rem;" class="text-center mb-3">Impacto Social</h3>
+          <ul style="color: white; padding-left: 1.2rem;">
+            <li class="mb-2">Comunidades en línea</li>
+            <li class="mb-2">Habilidades sociales</li>
+            <li class="mb-2">Cyberbullying</li>
+            <li>Equipos y cooperación</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metodología -->
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto">
+        <div class="p-4" style="background: rgba(240, 255, 0, 0.1); border-radius: 12px; border-left: 4px solid #f0ff00;">
+          <h2 style="color: #8000ff; font-size: 1.8rem;" class="mb-3">
+            <i class="fas fa-flask me-2"></i>Metodología de Investigación
+          </h2>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="p-3" style="background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <h4 style="color: #f0ff00;"><i class="fas fa-database me-2"></i>Recolección de Datos</h4>
+                <p style="color: white;">
+                  Utilizamos formularios estandarizados para recopilar información sobre hábitos de juego y estado mental.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3" style="background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <h4 style="color: #8000ff;"><i class="fas fa-chart-line me-2"></i>Análisis Estadístico</h4>
+                <p style="color: white;">
+                  Correlaciones entre variables y modelos predictivos usando machine learning.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3" style="background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <h4 style="color: #4fc3f7;"><i class="fas fa-user-friends me-2"></i>Estudios de Caso</h4>
+                <p style="color: white;">
+                  Seguimiento a jugadores durante 6 meses para evaluar cambios.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3" style="background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <h4 style="color: #f0ff00;"><i class="fas fa-vr-cardboard me-2"></i>Tecnologías Emergentes</h4>
+                <p style="color: white;">
+                  Evaluación de terapias basadas en realidad virtual.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Equipo -->
+    <div class="text-center mt-5 pt-4" style="border-top: 1px solid rgba(128, 0, 255, 0.3);">
+      <h3 style="color: #f0ff00; font-size: 1.5rem;" class="mb-3">
+        <i class="fas fa-users-cog me-2"></i>Colaboradores
+      </h3>
+      <p style="color: white;">
+        Psicólogos | Desarrolladores de Juegos | Analistas de Datos | Terapeutas
+      </p>
+      <button class="btn mt-3" style="background: linear-gradient(135deg, #f0ff00 0%, #8000ff 100%); color: #121212; border: none;">
+        <i class="fas fa-envelope me-2"></i>Contactar al Equipo
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(128, 0, 255, 0.3);
+  }
+
+  ul {
+    list-style-type: none;
+  }
+  ul li:before {
+    content: "•";
+    color: #8000ff;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+</style>
+{% endblock %}

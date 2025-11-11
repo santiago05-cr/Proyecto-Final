@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Nuevos Registros{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+<div class="container py-5" style="background-color: #121212; min-height: 100vh;">
+  <div class="mx-auto p-4" style="max-width: 800px; background: rgba(255,255,255,0.05); border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); font-family: 'Bangers', cursive;">
+
+    <!-- Título -->
+    <div class="text-center mb-4">
+      <h1 style="font-size: 2.5rem; color: #8000ff; text-shadow: 2px 2px #f0ff00;">
+        <i class="fas fa-plus-circle me-2"></i>Crear Registro
+      </h1>
+    </div>
+
+    <!-- Selector de tipo -->
+    <div class="d-flex justify-content-center gap-3 mb-4">
+      <button class="type-btn active" data-type="mental_health">Salud Mental</button>
+      <button class="type-btn" data-type="videogames">Videojuegos</button>
+    </div>
+
+    <!-- Contenedor dinámico del formulario -->
+    <div id="formContainer"></div>
+  </div>
+</div>
+
+<style>
+  .type-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: 2px solid #8000ff;
+    background: rgba(255,255,255,0.02);
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .type-btn.active,
+  .type-btn:hover {
+    background: linear-gradient(135deg, #f0ff00 0%, #8000ff 100%);
+    color: #121212;
+    box-shadow: 0 0 10px #f0ff00, 0 0 20px #8000ff;
+  }
+
+  label.form-label {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.4rem;
+  }
+  small.form-text {
+    color: white;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .form-control,
+  .form-select {
+    background: #121212;
+    border: 1px solid #8000ff;
+    color: white;
+    padding: 0.6rem 0.8rem;
+    line-height: 1.5;
+  }
+  .form-control::placeholder {
+    color: white !important;
+    opacity: 1;
+  }
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #f0ff00;
+    box-shadow: 0 0 8px rgba(240,255,0,0.5);
+    background: #121212;
+    color: white;
+  }
+
+  /* For select dropdown options */
+  .form-select option {
+    background: #121212;
+    color: white;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background: #8000ff;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-submit:hover {
+    background: #f0ff00;
+    color: #121212;
+    box-shadow: 0 0 10px #f0ff00, 0 0 20px #8000ff;
+  }
+</style>
+
+<script>
+  const formFields = {
+    mental_health: [
+      { name: "age", label: "Edad", type: "number", icon: "fas fa-user", required: true, min: 13, max: 80, placeholder: "Edad en años" },
+      { name: "gender", label: "Género", type: "select", icon: "fas fa-venus-mars", required: true, options: ["Male", "Female", "Other"] },
+      { name: "feel_after", label: "Sentimiento después de jugar", type: "select", icon: "fas fa-briefcase", required: true, options: ["Good", "Tired", "Unmotivated"] },
+      { name: "mental_harm", label: "¿Daño mental tras jugar?", type: "select", icon: "fas fa-check-circle", required: true, options: ["Yes", "No"] },
+      { name: "image_file", label: "Imagen de Perfil", type: "file", icon: "fas fa-image", required: true, accept: "image/*", description: "Sube una foto de perfil" }
+    ],
+    videogames: [
+      { name: "age", label: "Edad", type: "number", icon: "fas fa-user", required: true, min: 13, max: 80, placeholder: "Edad en años" },
+      { name: "gender", label: "Género", type: "select", icon: "fas fa-venus-mars", required: true, options: ["Male", "Female", "Other"] },
+      { name: "playing_hours", label: "Horas Jugadas", type: "number", icon: "fas fa-gamepad", required: true, min: 0, max: 24, placeholder: "Horas jugadas hoy" },
+      { name: "productive_time", label: "Horas Productivas", type: "number", icon: "fas fa-clock", required: true, min: 0, max: 24, placeholder: "Horas productivas hoy" },
+      { name: "image_file", label: "Imagen de Perfil", type: "file", icon: "fas fa-image", required: true, accept: "image/*", description: "Sube una foto de perfil" }
+    ]
+  };
+
+  function loadForm(type) {
+    document.querySelectorAll('.type-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.type === type));
+    const fields = formFields[type];
+    let html = `<form id="createForm" class="row g-3" enctype="multipart/form-data">`;
+    fields.forEach(f => {
+      html += `<div class="col-md-6">`;
+      html += `<label class="form-label" for="${f.name}"><i class="${f.icon} me-1"></i>${f.label}</label>`;
+      if (f.description) html += `<small class="form-text">${f.description}</small>`;
+      if (f.type === 'select') {
+        html += `<select id="${f.name}" name="${f.name}" class="form-select" ${f.required? 'required':''}>
+                  <option value="">Seleccione</option>`;
+        f.options.forEach(o => html += `<option value="${o}">${o}</option>`);
+        html += `</select>`;
+      } else {
+        html += `<input type="${f.type}" id="${f.name}" name="${f.name}" class="form-control" ${f.required? 'required':''} placeholder="${f.placeholder||''}" ${f.min? `min="${f.min}"`:''} ${f.max? `max="${f.max}"`:''} ${f.accept? `accept="${f.accept}"`:''}>`;
+      }
+      html += `</div>`;
+    });
+    html += `<div class="col-12"><button type="submit" class="btn-submit"><i class="fas fa-save me-2"></i>Crear Registro</button></div></form><div id="formResult" class="mt-3"></div>`;
+    document.getElementById('formContainer').innerHTML = html;
+    document.getElementById('createForm').addEventListener('submit', async e => {
+      e.preventDefault();const formData=new FormData(e.target);const resultDiv=document.getElementById('formResult');
+      resultDiv.innerHTML=`<div class="text-center py-3"><div class="spinner-border text-light" role="status"></div><p class="mt-2 text-light">Creando registro...</p></div>`;
+      try {const resp=await fetch(`/${type}/upload`,{method:'POST',body:formData});if(!resp.ok) throw new Error(await resp.text());const data=await resp.json();resultDiv.innerHTML=`<div class="alert alert-success" style="background-color:#d4edda;color:#155724;"><i class="fas fa-check-circle me-2"></i>¡Registro creado! ID: ${data.id}</div>`;e.target.reset();}
+      catch(err){resultDiv.innerHTML=`<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Error: ${err.message}</div>`;}
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{loadForm('mental_health');document.querySelectorAll('.type-btn').forEach(btn=>btn.addEventListener('click',()=>loadForm(btn.dataset.type)));});
+</script>
+{% endblock %}

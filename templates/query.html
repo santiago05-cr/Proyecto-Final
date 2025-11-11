@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}Consultas - Salud Mental y Videojuegos{% endblock %}
+
+{% block content %}
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+<div class="container-fluid py-4" style="background:#121212; min-height:100vh; font-family: 'Bangers', cursive;">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <!-- CARD SALUD MENTAL -->
+            <div class="card mb-4 shadow-lg border-0 rounded-lg" style="background:linear-gradient(145deg,#121212 0%,#1a1a1a 100%);">
+                <div class="card-header text-center py-4" style="background:linear-gradient(135deg,#8000ff 0%,#4fc3f7 100%);">
+                    <h2 class="mb-0 text-white">🧠 Consultas Salud Mental</h2>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Por ID -->
+                    <form id="mentalHealthIdForm" class="row g-3 mb-4">
+                        <h5 class="text-white">Buscar por ID</h5>
+                        <div class="col-md-4">
+                            <input type="number" name="id" class="form-control" placeholder="ID" min="1" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                        </div>
+                    </form>
+                    <div id="mentalHealthIdResults" class="mb-4"></div>
+
+                    <!-- Por Edad -->
+                    <form id="mentalHealthAgeForm" class="row g-3 mb-4">
+                        <h5 class="text-white">Filtrar por Edad</h5>
+                        <div class="col-md-4">
+                            <input type="number" name="age" class="form-control" placeholder="Edad" min="10" max="100" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+                        </div>
+                    </form>
+                    <div id="mentalHealthAgeResults" class="mb-4"></div>
+
+                    <!-- Por Campo -->
+                    <form id="mentalHealthFieldForm" class="row g-3">
+                        <h5 class="text-white">Buscar por Campo</h5>
+                        <div class="col-md-3">
+                            <select name="field" class="form-control" required>
+                                <option value="age">EDAD</option>
+                                <option value="gender">GÉNERO</option>
+                                <option value="feel_after">SENSACIÓN POSTERIOR</option>
+                                <option value="mental_harm">DAÑO MENTAL</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="value" class="form-control" placeholder="Valor" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                        </div>
+                    </form>
+                    <div id="mentalHealthFieldResults" class="mt-4"></div>
+                </div>
+            </div>
+
+            <!-- CARD VIDEOJUEGOS -->
+            <div class="card shadow-lg border-0 rounded-lg" style="background:linear-gradient(145deg,#121212 0%,#1a1a1a 100%);">
+                <div class="card-header text-center py-4" style="background:linear-gradient(135deg,#f0ff00 0%,#8000ff 100%);">
+                    <h2 class="mb-0 text-white">🎮 Consultas Videojuegos</h2>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Por ID -->
+                    <form id="videogameIdForm" class="row g-3 mb-4">
+                        <h5 class="text-white">Buscar por ID</h5>
+                        <div class="col-md-4">
+                            <input type="number" name="id" class="form-control" placeholder="ID" min="1" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                        </div>
+                    </form>
+                    <div id="videogameIdResults" class="mb-4"></div>
+
+                    <!-- Por Edad -->
+                    <form id="videogameAgeForm" class="row g-3 mb-4">
+                        <h5 class="text-white">Filtrar por Edad</h5>
+                        <div class="col-md-4">
+                            <input type="number" name="age" class="form-control" placeholder="Edad" min="10" max="100" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+                        </div>
+                    </form>
+                    <div id="videogameAgeResults" class="mb-4"></div>
+
+                    <!-- Por Campo -->
+                    <form id="videogameFieldForm" class="row g-3">
+                        <h5 class="text-white">Buscar por Campo</h5>
+                        <div class="col-md-3">
+                            <select name="field" class="form-control" required>
+                                <option value="age">EDAD</option>
+                                <option value="gender">GÉNERO</option>
+                                <option value="playing_hours">HORAS DE JUEGO</option>
+                                <option value="productive_time">TIEMPO PRODUCTIVO</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="value" class="form-control" placeholder="Valor" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                        </div>
+                    </form>
+                    <div id="videogameFieldResults" class="mt-4"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+async function handleFormSubmit(event, endpoint, resultsContainer) {
+    event.preventDefault();
+    resultsContainer.innerHTML = '<div class="alert alert-info">Buscando...</div>';
+
+    const formData = new FormData(event.target);
+    let url = endpoint;
+
+    try {
+        if (formData.get('id')) {
+            url = `${endpoint}/${formData.get('id')}`;
+        } else if (endpoint.includes('by_age')) {
+            url = `${endpoint}?age=${formData.get('age')}`;
+        } else if (endpoint.includes('search_mental_health_by_field') || endpoint.includes('search_by_field')) {
+            const field = formData.get('field');
+            const value = formData.get('value');
+            url = `${endpoint}?field=${field}&value=${value}`;
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || 'Error en la consulta');
+        }
+
+        const data = await response.json();
+
+        if (!data || (Array.isArray(data) && data.length === 0)) {
+            resultsContainer.innerHTML = `
+                <div class="alert alert-warning">
+                    No se encontraron registros para esta consulta
+                </div>`;
+            return;
+        }
+
+        // Display results in a table
+        const records = Array.isArray(data) ? data : [data];
+        displayResults(records, resultsContainer);
+
+    } catch (error) {
+        resultsContainer.innerHTML = `
+            <div class="alert alert-danger">
+                ${error.message}
+            </div>`;
+    }
+}
+
+function displayResults(records, container) {
+    let html = `
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        ${Object.keys(records[0]).map(key =>
+                            `<th>${key.toUpperCase()}</th>`
+                        ).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    records.forEach(record => {
+        html += '<tr>';
+        Object.values(record).forEach(value => {
+            html += `<td>${value ?? 'N/A'}</td>`;
+        });
+        html += '</tr>';
+    });
+
+    html += `
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
+
+// Event Listeners
+document.getElementById('mentalHealthIdForm').addEventListener('submit', e =>
+    handleFormSubmit(e, '/mental_health', document.getElementById('mentalHealthIdResults'))
+);
+
+document.getElementById('mentalHealthAgeForm').addEventListener('submit', e =>
+    handleFormSubmit(e, '/mental_health/by_age', document.getElementById('mentalHealthAgeResults'))
+);
+
+document.getElementById('mentalHealthFieldForm').addEventListener('submit', e =>
+    handleFormSubmit(e, '/mental_health/search_mental_health_by_field', document.getElementById('mentalHealthFieldResults'))
+);
+
+// Event Listeners para Videojuegos
+document.getElementById('videogameIdForm').addEventListener('submit', (e) =>
+    handleFormSubmit(e, '/videogames', document.getElementById('videogameIdResults'))
+);
+
+document.getElementById('videogameAgeForm').addEventListener('submit', (e) =>
+    handleFormSubmit(e, '/videogames/by_age', document.getElementById('videogameAgeResults'))
+);
+
+document.getElementById('videogameFieldForm').addEventListener('submit', (e) =>
+    handleFormSubmit(e, '/videogames/search_by_field', document.getElementById('videogameFieldResults'))
+);
+</script>
+
+<style>
+.btn-primary {
+    background: linear-gradient(135deg, #8000ff 0%, #4fc3f7 100%);
+    border: none;
+}
+
+.form-control {
+    background: #1a1a1a;
+    border-color: #8000ff;
+    color: white;
+}
+
+.form-control:focus {
+    background: #1a1a1a;
+    border-color: #4fc3f7;
+    color: white;
+}
+
+.alert {
+    background: #1a1a1a;
+    border-color: #8000ff;
+    color: white;
+}
+</style>
+{% endblock %}

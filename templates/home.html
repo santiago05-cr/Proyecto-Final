@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | Impacto de los Videojuegos en la Salud Mental{% endblock %}
+
+{% block content %}
+
+<!-- Google Fonts: Bangers -->
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+<div class="container py-5" style="font-family: 'Bangers', cursive; background-color: #121212; border-radius: 20px;">
+
+  <!-- Título principal -->
+  <h2 class="text-center mb-5" style="font-size: 2.5rem; color: #8000ff; text-shadow: 2px 2px #f0ff00;">
+    <i class="fas fa-gamepad me-2"></i>Explora Nuestras Funcionalidades
+  </h2>
+
+  <!-- Lista de funcionalidades -->
+  <div class="row justify-content-center gy-4">
+    {% for page in [
+        ('create', 'fas fa-plus-circle', 'Crear Registros', 'Agrega nuevos registros de salud mental o videojuegos'),
+        ('update', 'fas fa-pen-clip', 'Actualizar Datos', 'Modifica información existente en nuestros registros'),
+        ('delete', 'fas fa-trash-alt', 'Eliminar Registros', 'Gestiona la eliminación de datos del sistema'),
+        ('query', 'fas fa-search', 'Consultar Información', 'Busca y filtra registros según tus necesidades'),
+        ('goal', 'fas fa-bullseye', 'Objetivos', 'Conoce los propósitos de nuestra investigación'),
+        ('deleted', 'fas fa-trash-restore', 'Registros Eliminados', 'Revisa los datos que han sido eliminados'),
+        ('show', 'fas fa-table', 'Todos los Registros', 'Visualiza la información completa almacenada'),
+        ('design', 'fas fa-palette', 'Diseño', 'Explora nuestra metodología de diseño'),
+        ('planning', 'fas fa-project-diagram', 'Planificación', 'Conoce nuestro proceso de desarrollo')
+    ] %}
+    <div class="col-md-10">
+      <a href="/{{ page[0] }}" class="feature-row d-flex align-items-center justify-content-between px-4 py-3 text-decoration-none">
+        <div class="d-flex align-items-center gap-3">
+          <i class="{{ page[1] }} fa-2x" style="color: #f0ff00;"></i>
+          <div>
+            <h4 class="mb-1" style="color: white;">{{ page[2] }}</h4>
+            <p class="mb-0" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">{{ page[3] }}</p>
+          </div>
+        </div>
+        <i class="fas fa-arrow-right fa-lg" style="color: #8000ff;"></i>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Estilos personalizados -->
+<style>
+  .feature-row {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.08));
+    border: 2px solid #8000ff;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .feature-row:hover {
+    transform: scale(1.015);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px #f0ff00, 0 0 20px #8000ff;
+  }
+
+  .feature-row h4 {
+    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 768px) {
+    .feature-row {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.5rem;
+    }
+
+    .feature-row i.fa-arrow-right {
+      align-self: flex-end;
+    }
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,13 @@
+import json
+
+def test_login_exitoso(client):
+    # Datos correctos
+    data = {
+        "username": "admin",
+        "password": "admin123"
+    }
+
+    response = client.post("/login", data=data, follow_redirects=True)
+
+    assert response.status_code == 200
+    assert b"Bienvenido" in response.data

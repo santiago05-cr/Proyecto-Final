@@ -1,0 +1,10 @@
+def test_login_fallido(client):
+    data = {
+        "username": "incorrecto",
+        "password": "mala"
+    }
+
+    response = client.post("/login", data=data)
+
+    assert response.status_code == 401 or response.status_code == 200
+    assert b"Error" in response.data or b"Credenciales incorrectas" in response.data

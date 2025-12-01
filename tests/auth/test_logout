@@ -1,0 +1,7 @@
+def test_logout(client):
+    client.post("/login", data={"username": "admin", "password": "admin123"})
+
+    response = client.get("/logout", follow_redirects=True)
+
+    assert response.status_code == 200
+    assert b"Has cerrado sesión" in response.data or b"Login" in response.data

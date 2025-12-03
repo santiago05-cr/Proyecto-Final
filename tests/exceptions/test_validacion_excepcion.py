@@ -1,7 +1,7 @@
-def test_validacion_incorrecta(client):
-    data = {}  # Enviar datos vacíos para provocar error
+def test_validacion_formulario(client):
+    response = client.post(
+        "/login",
+        data={"username": ""}  # falta username válido
+    )
 
-    response = client.post("/crear", data=data)
-
-    assert response.status_code in (400, 422)
-    assert b"Error" in response.data or b"Datos inválidos" in response.data
+    assert response.status_code == 422

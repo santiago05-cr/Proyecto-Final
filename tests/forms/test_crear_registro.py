@@ -1,10 +1,30 @@
-def test_crear_registro(client):
-    data = {
-        "nombre": "Prueba",
-        "descripcion": "Registro de prueba"
-    }
+from fastapi import status
 
-    response = client.post("/crear", data=data, follow_redirects=True)
+def test_crear_registro_mental_health(client):
+    response = client.post(
+        "/mental_health/upload",
+        data={
+            "age": 22,
+            "gender": "F",
+            "feel_after": "Relaxed",
+            "mental_harm": "None"
+        },
+        files={"image_file": ("test.jpg", b"fake-image", "image/jpeg")}
+    )
+    assert response.status_code == status.HTTP_200_OK
+    assert "id" in response.json()
 
-    assert response.status_code == 200
-    assert b"creado" in response.data.lower() or b"exito" in response.data.lower()
+
+def test_crear_registro_videogame(client):
+    response = client.post(
+        "/videogames/upload",
+        data={
+            "age": 20,
+            "gender": "M",
+            "playing_hours": 5,
+            "productive_time": 2
+        },
+        files={"image_file": ("test.jpg", b"fake-image", "image/jpeg")}
+    )
+    assert response.status_code == status.HTTP_200_OK
+    assert "id" in response.json()
